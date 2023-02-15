@@ -1,5 +1,0 @@
-  user: "postgres",
-  password: "3y0VfN3067l74M4",
-  hostname: "wandering-bush-7518-database.internal",
-  database: "wandering_bush_7518",
-  port: 5432,
