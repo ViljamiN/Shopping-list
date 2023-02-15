@@ -1,0 +1,31 @@
+<% layout("./layouts/layout.eta") %>
+<h1><%= it.name %></h1>
+<a href="/lists">Shopping Lists</a>
+
+<form method="POST">
+  <input type="text" name="name" />
+  <input type="submit" value="Add Item!" />
+</form>
+
+<ul>
+  <% it.items.sort((a, b) => {
+    if (a.collected && !b.collected) {
+      return 1;
+    } else if (!a.collected && b.collected) {
+      return -1;
+    } else {
+      return a.name.localeCompare(b.name);
+    }
+  }).forEach(item => { %>
+    <li id="<%= item.id%>">
+      <% if (item.collected) { %>
+        <del><%= item.name %></del>
+      <% } else { %>
+        <%= item.name %>
+      <% } %>
+      <form action="/lists/<%= it.id %>/items/<%= item.id %>/collect" method="POST">
+        <input id="<%= item.id%>" type="submit" value="Mark collected!"/>
+      </form>
+    </li>
+  <% }) %>
+</ul>

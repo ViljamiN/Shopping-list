@@ -1,0 +1,5 @@
+<% layout("./layouts/layout.eta") %>
+<a href="/lists">Lists</a>
+
+<p>Shopping lists: <%= it.lists %></p>
+<p>Shopping list items: <%= it.items %></p>
