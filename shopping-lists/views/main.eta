@@ -1,5 +1,8 @@
 <% layout("./layouts/layout.eta") %>
 <a href="/lists">Lists</a>
-
-<p>Shopping lists: <%= it.lists %></p>
-<p>Shopping list items: <%= it.items %></p>
+<% if (it.lists.length > 0) { %>
+  <p>Shopping lists: <%= it.lists %></p>
+  <p>Shopping list items: <%= it.items %></p>
+<%} else { %>
+  <p>No shopping lists yet.</p>
+<% } %>
