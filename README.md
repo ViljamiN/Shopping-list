@@ -10,7 +10,7 @@ It stores shopping lists, and provides the following functionality:
 - Show statistics of the application
 
 The application is written in JavaScript, and uses .eta files for templating the HTML.
-The application can be tried out at fly.io: (ADD LINK HERE)
+The application can be tried out at fly.io: https://lingering-sun-644.fly.dev/
 
 You can run the application locally using *docker-compose*. The application will be available at http://localhost:7777.
 To run it locally, run the following commands:
