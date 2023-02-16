@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <h1>Shared Shopping Lists</h1>
+    <h1>Shared shopping lists</h1>
   </head>
   <body>
     <%~ it.body %>

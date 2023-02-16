@@ -3,7 +3,7 @@ import * as itemService from "../services/itemService.js";
 const addItem = async (request) => {
   const formData = await request.formData();
   const name = formData.get("name");
-  const shopping_list_id = request.url.split("/").pop();
+  const shopping_list_id = request.url.split("/")[4];
   console.log(shopping_list_id);
   await itemService.createItem(name, shopping_list_id);
 };

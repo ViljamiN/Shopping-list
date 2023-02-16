@@ -30,9 +30,7 @@ const handleRequest = async (request) => {
       return requestUtils.redirectTo("/lists");
     }
     else if (request.url.endsWith("/items")) {
-      //if it is, we add a new item to the list with the given id
       await itemController.addItem(request);
-      //and redirect to the list page
       return requestUtils.redirectTo(`/lists/${request.url.split("/")[4]}`);
     }
     else if (request.url.endsWith("/collect")) {
