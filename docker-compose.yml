@@ -12,15 +12,11 @@ services:
     depends_on:
       - database
       - flyway
-    env_file:
-      - project.env
 
   database:
     container_name: database-p1-64c5ec39-37f0-4f9c-9f99-703b18d72e2c
     image: postgres:14.1
     restart: "no"
-    env_file:
-        - project.env
 
   flyway:
     image: flyway/flyway:9.11.0-alpine
@@ -29,8 +25,6 @@ services:
     volumes:
       - .:/flyway/sql
     command: -connectRetries=60 -baselineOnMigrate=true migrate
-    env_file:
-      - project.env
 
   e2e-playwright:
     entrypoint: "/bin/true" # Prevent startup on docker-compose up
