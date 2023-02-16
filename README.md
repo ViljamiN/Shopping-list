@@ -16,8 +16,7 @@ You can run the application locally using *docker-compose*. The application will
 To run it locally, run the following commands:
 - docker-compose build
 - docker-compose up
+After this, the application will be available at http://localhost:7777.
 
 To run the tests, run the following commands:
 - docker-compose run --entrypoint=npx e2e-playwright playwright test; docker-compose rm -sf
-
-After this, the application will be available at http://localhost:7777.
