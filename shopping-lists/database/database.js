@@ -1,35 +1,10 @@
-import { Pool } from "https://deno.land/x/postgres@v0.17.0/mod.ts";
+import postgres from "https://deno.land/x/postgresjs@v3.3.3/mod.js";
 
-const CONCURRENT_CONNECTIONS = 2;
-const connectionPool = new Pool({
-  user: "postgres",
-  password: "3y0VfN3067l74M4",
-  hostname: "wandering-bush-7518-database.internal",
-  database: "wandering_bush_7518",
-  port: 5432,
-}, CONCURRENT_CONNECTIONS);
+let sql;
+if (Deno.env.get("DATABASE_URL")) {
+  sql = postgres(Deno.env.get("DATABASE_URL"));
+} else {
+  sql = postgres({});
+}
 
-const executeQuery = async (query, params) => {
-  const response = {};
-  let client;
-
-  try {
-    client = await connectionPool.connect();
-    const result = await client.queryObject(query, params);
-    if (result.rows) {
-      response.rows = result.rows;
-    }
-  } catch (e) {
-    response.error = e;
-  } finally {
-    try {
-      await client.release();
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  return response;
-};
-
-export { executeQuery };
+export { sql };

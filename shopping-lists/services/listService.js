@@ -1,38 +1,26 @@
-import { executeQuery } from "../database/database.js";
+import { sql } from "../database/database.js";
 
 const create = async (name) => {
-  const query = `INSERT INTO shopping_lists (name) VALUES (${ name })`;
-  const params = [name];
-  await executeQuery(query, params);
+  await sql`INSERT INTO shopping_lists (name) VALUES (${ name })`;
 };
 
 const findLists = async () => {
-  const query = `SELECT * FROM shopping_lists WHERE active = true`;
-  const params = [];
-  const response = await executeQuery(query, params);
+  const response = await sql`SELECT * FROM shopping_lists WHERE active = true`;
   return response.rows;
 };
 
 const findById = async (id) => {
-  const query = `SELECT * FROM shopping_lists WHERE id = ${ id }`;
-  const params = [id];
-  const response = await executeQuery(query, params);
+  const response = await sql`SELECT * FROM shopping_lists WHERE id = ${ id }`;
   return response.rows[0];
 };
 
 const deactivateList = async (id) => {
-  const query = `UPDATE shopping_lists SET active = false WHERE id = ${ id }`;
-  const params = [id];
-  await executeQuery(query, params);
+  await sql`UPDATE shopping_lists SET active = false WHERE id = ${ id }`;
 };
 
 const countAll = async () => {
-  const query = `SELECT COUNT(*) FROM shopping_lists`;
-  const params = [];
-  const response = await executeQuery(query, params);
-  const query2 = `SELECT COUNT(*) FROM shopping_list_items`;
-  const params2 = [];
-  const response2 = await executeQuery(query2, params2);
+  const response = await sql`SELECT COUNT(*) FROM shopping_lists`;
+  const response2 = await sql`SELECT COUNT(*) FROM shopping_list_items`;
   const data = {
     lists: response.rows[0].count,
     items: response2.rows[0].count
