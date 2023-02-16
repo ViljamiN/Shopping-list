@@ -6,12 +6,12 @@ const create = async (name) => {
 
 const findLists = async () => {
   const response = await sql`SELECT * FROM shopping_lists WHERE active = true`;
-  return response.rows;
+  return response;
 };
 
 const findById = async (id) => {
   const response = await sql`SELECT * FROM shopping_lists WHERE id = ${ id }`;
-  return response.rows[0];
+  return response;
 };
 
 const deactivateList = async (id) => {
@@ -22,8 +22,8 @@ const countAll = async () => {
   const response = await sql`SELECT COUNT(*) FROM shopping_lists`;
   const response2 = await sql`SELECT COUNT(*) FROM shopping_list_items`;
   const data = {
-    lists: response.rows[0].count,
-    items: response2.rows[0].count
+    lists: response[0].count,
+    items: response2[0].count
   };
   return data;
 };

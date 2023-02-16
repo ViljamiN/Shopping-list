@@ -10,7 +10,7 @@ const collectItem = async (id) => {
 
 const viewItems = async (id) => {
   const response = await sql`SELECT * FROM shopping_list_items WHERE shopping_list_id = ${ id }`;
-  return response.rows;
+  return response;
 };
 
 export { createItem, collectItem, viewItems };

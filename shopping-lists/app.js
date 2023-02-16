@@ -77,7 +77,6 @@ const handleRequest = async (request) => {
       //if it is, we show the main .eta page
       //we pass data to the .eta page: this includes the number of the lists and of the items
       const data = await listController.countAll();
-      console.log(data);
       return new Response(await renderFile("main.eta", data), responseDetails);
     }
     else {

@@ -6,6 +6,7 @@
   <input type="submit" value="Submit List!" />
 </form>
 <ul>
+<% if (it.lists) { %>
   <% it.lists.forEach((list) => { %>
     <li>
       <a href="/lists/<%= list.id %>"><%= list.name %></a>
@@ -14,4 +15,5 @@
       </form>
     </li>
   <% }); %>
+<% } %>
 </ul>
